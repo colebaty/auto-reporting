@@ -8,7 +8,7 @@ good progress with this
     - [ ] all /# headers, and links to images should appear on their own lines,
       i.e. separated by newlines
 
-```
+```markdown
 ##### BAD #####
 
 # some header
