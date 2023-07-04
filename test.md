@@ -15,6 +15,7 @@ book: true
 book-class: false
 classoption: oneside
 code-block-font-size: \scriptsize
+imageNameKey: replace-me
 ---
 Written by [0xe10c](https://app.hackthebox.com/profile/525177)
 

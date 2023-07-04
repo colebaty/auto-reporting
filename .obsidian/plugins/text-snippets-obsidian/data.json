@@ -1,0 +1,15 @@
+{
+  "snippets_file": "snippets : It is an obsidian plugin, that replaces your selected text.\npb : <div style=\"page-break-after: always;\"></div>$nl$",
+  "snippets": [
+    "snippets : It is an obsidian plugin, that replaces your selected text.",
+    "pb : <div style=\"page-break-after: always;\"></div>$nl$"
+  ],
+  "endSymbol": "$end$",
+  "newlineSymbol": "$nl$",
+  "stopSymbol": "$tb$",
+  "pasteSymbol": "$pst$",
+  "useTab": true,
+  "useSpace": false,
+  "wordDelimiters": "$()[]{}<>,.!?;:'\"\\/",
+  "isWYSIWYG": true
+}

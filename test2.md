@@ -20,11 +20,11 @@ imageNameKey: replace-me
 good progress with this
 
 # TODO
-- [x] you have to set the obsidian environment up to
-    - [x] use "markdown" links for pasted images, not "wiki" links
+- [ ] you have to set the obsidian environment up to
+    - [ ] use "markdown" links for pasted images, not "wiki" links
 
 ![](img/replace-me.png)
-- [x] use a [plugin](https://forum.obsidian.md/t/paste-image-rename-plugin/35480) to help name files properly to eliminate the spaces
+- [ ] use a [plugin](https://forum.obsidian.md/t/paste-image-rename-plugin/35480) to help name files properly to eliminate the spaces
 
 ![](img/paste-image-rename-plugin.png)
 ![](img/paste-image-rename-plugin.png)
@@ -40,9 +40,8 @@ good progress with this
 
  this will make the awk script a lot easier, i suspect
 
-- [x] writing/formatting - enforce with script
-    - [x] all \# headers, and links to images should appear on their own lines, i.e. separated by newlines
-    - [ ]  for the future: batch convert old reports link styles to markdown, i.e. non-wiki
+- [ ] writing/formatting
+    - [ ] all \# headers, and links to images should appear on their own lines, i.e. separated by newlines
 
 ```markdown
 ##### BAD #####
@@ -58,4 +57,3 @@ good progress with this
 ```
 
 - [ ] does resizing work with markdown tags?
-    it does, but pandoc doesn't know what to do with them.

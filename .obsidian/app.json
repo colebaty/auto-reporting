@@ -1,0 +1,20 @@
+{
+  "showUnsupportedFiles": true,
+  "vimMode": true,
+  "showLineNumber": true,
+  "spellcheck": true,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "useTab": false,
+  "userIgnoreFilters": [
+    "/\\.(o|axf|srec|amp)/"
+  ],
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "img",
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative"
+}
