@@ -2,3 +2,4 @@ output/**/*.7z
 output/*-*-Exam-Report.pdf
 .vscode
 *.swp
+.obsidian/workspace.json
