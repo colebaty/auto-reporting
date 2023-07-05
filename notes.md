@@ -1,22 +1,3 @@
----
-title: "Offensive Security Certified Professional Exam Report"
-author: ["student@youremailaddress.com", "OSID: XXXX"]
-date: "2020-07-25"
-subject: "Markdown"
-keywords: [Markdown, Example]
-subtitle: "OSCP Exam Report"
-lang: "en"
-titlepage: true
-titlepage-color: "1E90FF"
-titlepage-text-color: "FFFAFA"
-titlepage-rule-color: "FFFAFA"
-titlepage-rule-height: 2
-book: true
-book-class: false
-classoption: oneside
-code-block-font-size: \scriptsize
-imageNameKey: replace-me
----
 good progress with this
 
 # TODO
