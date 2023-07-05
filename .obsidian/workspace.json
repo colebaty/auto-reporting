@@ -42,9 +42,17 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "038119cd44e60be9",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 1,
+        "currentTab": 2,
         "stacked": true
       }
     ],
@@ -111,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes.md",
+                "file": "test2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes.md",
+                "file": "test2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -151,7 +159,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes.md"
+                "file": "test2.md"
               }
             }
           }
@@ -172,15 +180,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0b9546b3ff845c33",
+  "active": "71e271765411578a",
   "lastOpenFiles": [
-    "prepare.awk~",
     "test2.md",
+    "frontmatter.yml",
+    "frontmatter.md",
+    "notes.md",
+    "prepare.awk",
+    "prepare.awk~",
+    "4913",
     "awk-test.awk~",
     "awk-test.awk",
-    "4913",
-    "prepare.awk",
-    "notes.md",
     "test3.md",
     "testout.md",
     "test.md~",
@@ -197,7 +207,6 @@
     "img/Pasted image 20230623094809.png",
     "img/Pasted image 20230623094325.png",
     "img/Pasted image 20230623094119.png",
-    "sattrack.out",
     "Jupiter - Upgrading Foothold - PHP reverse shell with php binary upload.md",
     "HTB - Jupiter - Walkthrough.md",
     "10 - Foothold.md",
@@ -217,7 +226,6 @@
     "INE/01 - Assessment Methodologies/Enumeration.md",
     "Acronym Decoder.md",
     "INE/03 - Host & Network Penetration Testing/Post Exploitation/Post Exploitation.md",
-    "INE/03 - Host & Network Penetration Testing/System,Host-Based attacks/Windows Privilege Escalation.md",
-    "INE/03 - Host & Network Penetration Testing/Network-Based Attacks/Network-Based Attacks.md"
+    "INE/03 - Host & Network Penetration Testing/System,Host-Based attacks/Windows Privilege Escalation.md"
   ]
 }
