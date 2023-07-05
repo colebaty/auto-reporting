@@ -57,5 +57,5 @@ good progress with this
 ![ link to some file]( link to some file) <- on its own line
 ```
 
-- [ ] does resizing work with markdown tags?
+- [x] does resizing work with markdown tags?
     it does, but pandoc doesn't know what to do with them.
