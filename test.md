@@ -28,7 +28,7 @@ Written by [0xe10c](https://app.hackthebox.com/profile/525177)
 
 
 
-![[Pasted image 20230702145550.png]]
+![Pasted image 20230702145550](img/Pasted%20image%2020230702145550.png)
 
 
 Update `/etc/hosts`
@@ -51,13 +51,13 @@ Update `/etc/hosts`
 FerOxBuster forced browsing reveals a few endpoints. 
 
 
-![[Pasted image 20230703134056.png]]
+![Pasted image 20230703134056](img/Pasted%20image%2020230703134056.png)
 
 
 There appears to be some sort of admin panel accessible by login.
 
 
-![[Pasted image 20230703134156.png]]
+![Pasted image 20230703134156](img/Pasted%20image%2020230703134156.png)
 
 
 
@@ -69,10 +69,10 @@ There were no vhosts identified by `gobuster`
 
 Let's visit the website
 
-![[Pasted image 20230702150303.png]]
+![Pasted image 20230702150303](img/Pasted%20image%2020230702150303.png)
 
 
-![[Pasted image 20230702151031.png]]
+![Pasted image 20230702151031](img/Pasted%20image%2020230702151031.png)
 
 
 After being redirected from `10.10.11.218`, we land on the HTTPS webpage `ssa.htb`, the home page of the National Security uh, Secret Spy Agency.
@@ -85,7 +85,7 @@ Of the three links at the top of the page, only the "Contact" page seems to bear
 ### Contact page
 
 
-![[Pasted image 20230702151508.png]]
+![Pasted image 20230702151508](img/Pasted%20image%2020230702151508.png)
 
 
 
@@ -96,16 +96,16 @@ This page is a demo for PGP encryption.  On this page you can
 - use SSA PGP public key to encrypt, decrypt, and verify messages
 - do all of that same functionality with a user-owned PGP keypair.
 
-There's not gonna be a super deep dive in this document, but I have prepared [[PGP and GnuPG|this document]] that goes through each of the steps with commands.
+There's not gonna be a super deep dive in this document, but I have prepared [this document](PGP%20and%20GnuPG) that goes through each of the steps with commands.
 
 
-![[Pasted image 20230702151729.png]]
+![Pasted image 20230702151729](img/Pasted%20image%2020230702151729.png)
 
 
 #### SSA PGP public key
 
 
-![[Pasted image 20230702152245.png]]
+![Pasted image 20230702152245](img/Pasted%20image%2020230702152245.png)
 
 ```pgp
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -169,18 +169,18 @@ FxEcPBaB0bhe5Fh7fQ811EMG1Q6Rq/mr8o8bUfHh
 
 On this part of the PGP Guide page, the user is able to enter their own PGP public key and a signed PGP message.
 
-![[Pasted image 20230703161442.png]]
+![Pasted image 20230703161442](img/Pasted%20image%2020230703161442.png)
 
 
 
-![[PGP and GnuPG#^7f2227]]
+![](PGP%20and%20GnuPG#^7f2227)
 
 
-![[PGP and GnuPG#^e01be7]]
+![](PGP%20and%20GnuPG#^e01be7)
 
-![[PGP and GnuPG#^c7e592]]
+![](PGP%20and%20GnuPG#^c7e592)
 
-![[PGP and GnuPG#^414003]]
+![](PGP%20and%20GnuPG#^414003)
 
 ### testing template injection with PGP keypair
 
@@ -197,11 +197,11 @@ To validate:
 #### validating template injection - arithmetic
 
 
-![[Pasted image 20230702155105.png]]
+![Pasted image 20230702155105](img/Pasted%20image%2020230702155105.png)
 
 
 
-![[Pasted image 20230702155231.png]]
+![Pasted image 20230702155231](img/Pasted%20image%2020230702155231.png)
 
 
 Since the name associated with the PGP keypair is controlled by the user, we believe this can be exploited with Flask/Jinja template injection to gain a reverse shell on the target.
@@ -210,10 +210,10 @@ Since the name associated with the PGP keypair is controlled by the user, we bel
 #### validating template injection - Flask enumeration
 
 
-![[Pasted image 20230702155735.png]]
+![Pasted image 20230702155735](img/Pasted%20image%2020230702155735.png)
 
 
-![[Pasted image 20230702160017.png]]
+![Pasted image 20230702160017](img/Pasted%20image%2020230702160017.png)
 
 
 
@@ -228,7 +228,7 @@ We tested a few payloads before we found one that works:
 [Source](https://www.onsecurity.io/blog/server-side-template-injection-with-jinja2/)
 
 
-![[Pasted image 20230702160824.png]]
+![Pasted image 20230702160824](img/Pasted%20image%2020230702160824.png)
 
 
 
@@ -243,7 +243,7 @@ We tested a few payloads before we found one that works:
 ### Enumeration of Flask/Jinja app environment
 
 
-![[Pasted image 20230702161755.png]]
+![Pasted image 20230702161755](img/Pasted%20image%2020230702161755.png)
 
 
 
@@ -261,7 +261,7 @@ atlas:GarlicAndOnionZ42
 SECRET_KEY:91668c1bc67132e3dcfb5b1a3e0c5c21
 ```
 
-![[Pasted image 20230702162518.png]]
+![Pasted image 20230702162518](img/Pasted%20image%2020230702162518.png)
 
 [Source](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY)
 
@@ -274,24 +274,24 @@ SECRET_KEY:91668c1bc67132e3dcfb5b1a3e0c5c21
 Using the SSTI RCE, we were able to obtain a reverse shell as the `atlas` user.
 
 
-![[Pasted image 20230702163422.png]]
+![Pasted image 20230702163422](img/Pasted%20image%2020230702163422.png)
 
 
 After upgrading, we attempted some light manual enumeration, searching for more listening ports, files, etc.
 
 
-![[Pasted image 20230702163916.png]]
+![Pasted image 20230702163916](img/Pasted%20image%2020230702163916.png)
 
 
 This box seems to have nothing going for it.  No `curl`, no `wget`, no `nc`, no `find`?  That can't be.
 
 
-![[Pasted image 20230702164058.png]]
+![Pasted image 20230702164058](img/Pasted%20image%2020230702164058.png)
 
 I'll be damned.
 
 
-![[Pasted image 20230702164242.png]]
+![Pasted image 20230702164242](img/Pasted%20image%2020230702164242.png)
 
 
 ## Other users
@@ -302,7 +302,7 @@ There are only three users on the box with shell access
 - `atlas`
 
 
-![[Pasted image 20230702164431.png]]
+![Pasted image 20230702164431](img/Pasted%20image%2020230702164431.png)
 
 
 
@@ -312,28 +312,28 @@ There are only three users on the box with shell access
 Further enumeration with automated tools is difficult.  The home directory of `atlas` is read-only
 
 
-![[Pasted image 20230702164908.png]]
+![Pasted image 20230702164908](img/Pasted%20image%2020230702164908.png)
 
 
 `/tmp` is writable, but we don't gain much - with such a limited set of tools, `linpeas.sh` is effectively useless.
 
 
-![[Pasted image 20230702165413.png]]
+![Pasted image 20230702165413](img/Pasted%20image%2020230702165413.png)
 
 
 
-![[Pasted image 20230702165446.png]]
+![Pasted image 20230702165446](img/Pasted%20image%2020230702165446.png)
 
 
 
-![[Pasted image 20230702165742.png]]
+![Pasted image 20230702165742](img/Pasted%20image%2020230702165742.png)
 
 `silentobserver` is also apparently `nobody`
 
-![[Pasted image 20230702165858.png]]
+![Pasted image 20230702165858](img/Pasted%20image%2020230702165858.png)
 
 
-![[Pasted image 20230702170114.png]]
+![Pasted image 20230702170114](img/Pasted%20image%2020230702170114.png)
 
 [Source](https://wiki.ubuntu.com/nobody)
 
@@ -342,7 +342,7 @@ Further enumeration with automated tools is difficult.  The home directory of `a
 
 
 
-![[Pasted image 20230702171019.png]]
+![Pasted image 20230702171019](img/Pasted%20image%2020230702171019.png)
 
 
 Poking around `atlas`'s home directory, we find a file named `/home/atlas/.config/httpie/sessions/localhost_5000/admin.json`, which appears to contain credentials for the `silentobserver` user.
@@ -357,7 +357,7 @@ silentobserver:quietLiketheWind22
 ### user flag
 
 
-![[Pasted image 20230702171309.png]]
+![Pasted image 20230702171309](img/Pasted%20image%2020230702171309.png)
 
 
 
@@ -368,7 +368,7 @@ silentobserver:quietLiketheWind22
 ### listening ports
 
 
-![[Pasted image 20230702183556.png]]
+![Pasted image 20230702183556](img/Pasted%20image%2020230702183556.png)
 
 
 
@@ -376,11 +376,11 @@ silentobserver:quietLiketheWind22
 
 Using SSH port forwarding, we accessed the service listening on port 5000.  It is the SSA website from the initial Enumeration phase.  
 
-![[Pasted image 20230702184004.png]]
+![Pasted image 20230702184004](img/Pasted%20image%2020230702184004.png)
 
 
 
-![[Pasted image 20230702184342.png]]
+![Pasted image 20230702184342](img/Pasted%20image%2020230702184342.png)
 
 
 
@@ -388,7 +388,7 @@ Using SSH port forwarding, we accessed the service listening on port 5000.  It i
 #### port 3306 - `mysql` service 
 
 
-![[Pasted image 20230702173622.png]]
+![Pasted image 20230702173622](img/Pasted%20image%2020230702173622.png)
 
 
 contents of `users` table
@@ -408,20 +408,20 @@ wasn't able to crack straight away - may return as last resort
 ## TipNet - backend for SSA "Contact" reporting page
 
 
-Recall the [[HTB - Sandworm (Seasonal Week 1) - Walkthrough#Contact page|contact page]] found earlier, which accepts messages signed with the SSA PGP public key.
+Recall the [](HTB%20-%20Sandworm%20(Seasonal%20Week%201)%20-%20Walkthrough.md#Contact%20page%7Ccontact%20page) found earlier, which accepts messages signed with the SSA PGP public key.
 
 
-![[Pasted image 20230702151508.png]]
+![Pasted image 20230702151508](img/Pasted%20image%2020230702151508.png)
 
 
-Recall also the [[HTB - Sandworm (Seasonal Week 1) - Walkthrough#feroxbuster - exposing admin panel|exposed admin panel]] from the forced browsing scan.
+Recall also the [](HTB%20-%20Sandworm%20(Seasonal%20Week%201)%20-%20Walkthrough.md#feroxbuster%20-%20exposing%20admin%20panel%7Cexposed%20admin%20panel) from the forced browsing scan.
 
 
-![[Pasted image 20230703134156.png]]
+![Pasted image 20230703134156](img/Pasted%20image%2020230703134156.png)
 
 Using `silentobserver`'s credentials, we are able to access the admin panel.
 
-![[Pasted image 20230703133433.png]]
+![Pasted image 20230703133433](img/Pasted%20image%2020230703133433.png)
 
 
 Once authenticated, we can access the `/view` endpoint, which shows a list of "tips" submitted by the public through the "Contact" form.
@@ -431,40 +431,40 @@ Once authenticated, we can access the `/view` endpoint, which shows a list of "t
 
 Accessing one of the messages, we see in the URL that there is a parameter `fname` passed to the back end, referencing a filename of the form `<hash>.txt`. 
 
-![[Pasted image 20230703134826.png]]
+![Pasted image 20230703134826](img/Pasted%20image%2020230703134826.png)
 
 
 Testing for file inclusion and directory traversal led nowhere.
 
-![[Pasted image 20230703135050.png]]
+![Pasted image 20230703135050](img/Pasted%20image%2020230703135050.png)
 
 
 
 ## running process enumeration with `pspy` leads to discovery of TipNet service source code, backend `Upstream` MySQL database
 
 
-![[Pasted image 20230703140147.png]]
+![Pasted image 20230703140147](img/Pasted%20image%2020230703140147.png)
 
 
 
 ### `/opt/tipnet`
 
 
-![[Pasted image 20230703140614.png]]
+![Pasted image 20230703140614](img/Pasted%20image%2020230703140614.png)
 
 
-![[Pasted image 20230703140700.png]]
-
-
-
-![[Pasted image 20230703140801.png]]
+![Pasted image 20230703140700](img/Pasted%20image%2020230703140700.png)
 
 
 
-![[Pasted image 20230703141023.png]]
+![Pasted image 20230703140801](img/Pasted%20image%2020230703140801.png)
 
 
-![[Pasted image 20230703141125.png]]
+
+![Pasted image 20230703141023](img/Pasted%20image%2020230703141023.png)
+
+
+![Pasted image 20230703141125](img/Pasted%20image%2020230703141125.png)
 
 
 ### MySQL `Upstream` database
@@ -479,7 +479,7 @@ tipnet:4The_Greater_GoodJ4A
 ```
 
 
-![[Pasted image 20230703141617.png]]
+![Pasted image 20230703141617](img/Pasted%20image%2020230703141617.png)
 
 There are two tables
 * SIGINT
@@ -489,7 +489,7 @@ There are two tables
 #### SIGINT table
 
 
-![[Pasted image 20230703142132.png]]
+![Pasted image 20230703142132](img/Pasted%20image%2020230703142132.png)
 
 Nothing of value (to us, at least).
 
@@ -497,7 +497,7 @@ Nothing of value (to us, at least).
 #### tip_submissions table
 
 
-![[Pasted image 20230703141739.png]]
+![Pasted image 20230703141739](img/Pasted%20image%2020230703141739.png)
 
 These credentials are not valid for `root` login with `su` or `ssh`
 
@@ -508,10 +508,10 @@ We have validated that the service running on port 5000 is the TipNet service, w
 
 
 
-![[Pasted image 20230703142612.png]]
+![Pasted image 20230703142612](img/Pasted%20image%2020230703142612.png)
 
 
-![[Pasted image 20230703144739.png]]
+![Pasted image 20230703144739](img/Pasted%20image%2020230703144739.png)
 
 
 ## Analysis and synthesis of information
@@ -598,7 +598,7 @@ pub fn log(user: &str, query: &str, justification: &str) {
 After waiting for the cron job to run again (confirm with `pspy`), we found the file `/tmp/0xe10c`, created by the user `atlas`. 
 
 
-![[Pasted image 20230703145641.png]]
+![Pasted image 20230703145641](img/Pasted%20image%2020230703145641.png)
 
 We have command execution.
 
@@ -614,7 +614,7 @@ Using this process, we validated the ability of the target to reach the attacker
 ```
 
 
-![[Pasted image 20230703150659.png]]
+![Pasted image 20230703150659](img/Pasted%20image%2020230703150659.png)
 
 
 
@@ -643,7 +643,7 @@ Using the payload shown below, we were able to receive a reverse shell as the `a
 ```
 
 
-![[Pasted image 20230703153805.png]]
+![Pasted image 20230703153805](img/Pasted%20image%2020230703153805.png)
 
 
 I enabled persistence by appending my attacker's SSH public key to `/home/atlas/.ssh/authorized_keys`, enabling persistent SSH access to the target as the user `atlas`.
@@ -652,7 +652,7 @@ I enabled persistence by appending my attacker's SSH public key to `/home/atlas/
 ## `firejail` config file
 
 
-![[Pasted image 20230703155438.png]]
+![Pasted image 20230703155438](img/Pasted%20image%2020230703155438.png)
 
 
 
@@ -660,7 +660,7 @@ I enabled persistence by appending my attacker's SSH public key to `/home/atlas/
 
 
 
-![[Pasted image 20230703160317.png]]
+![Pasted image 20230703160317](img/Pasted%20image%2020230703160317.png)
 
 
 The host is running version 0.9.68 of `firejail`.
@@ -672,7 +672,7 @@ Searchsploit lists two exploits for older versions of this program.
 We transferred the exploit script to the target, ran it as the `atlas` user.  We received a shell as `root` and were able to access the `root.txt` flag.
 
 
-![[Pasted image 20230703160747.png]]
+![Pasted image 20230703160747](img/Pasted%20image%2020230703160747.png)
 
 
 
@@ -721,12 +721,12 @@ function usage() {
 # prints only if invoked with -d
 
 function log() {
-    [[ -v DEBUG ]] \
+    [ -v DEBUG ](%20-v%20DEBUG%20) \
         && echo -e "\e[34m[+]\e[0m $1" 
 }
 
 
-[[ $# -lt 4 ]] \
+[](%20$#%20-lt%204%20) \
     && usage \
     && exit 1
 
@@ -754,7 +754,7 @@ done
 log "num args: $#" 
 log "target url: ${TARGET}"
 log "payload: ${PAYLOAD}"
-[[ -v COMMAND ]] && log "command: ${COMMAND}"
+[ -v COMMAND ](%20-v%20COMMAND%20) && log "command: ${COMMAND}"
 log "debug: ${DEBUG}"
 
 
@@ -772,7 +772,7 @@ EMAIL="someguy@gmail.com"
 
 # if -c is unset, generate jinja payload
 
-if [[ ! -v COMMAND ]]; then
+if [ ! -v COMMAND ](%20!%20-v%20COMMAND%20); then
     log "generating new keypair with jinja"
     python3 ${KEYGEN} -p 'password' -n "{{ ${PAYLOAD} }}" -e "${EMAIL}" >/dev/null # suppress pgp-pysuite output
 
@@ -818,7 +818,7 @@ log "result:\n${result}"
 
 # recover exfil data
 
-regex_begin='^.*GOODSIG [[:upper:][:digit:]]{16} '
+regex_begin='^.*GOODSIG [:upper:](:upper:){16} '
 regex_end='gpg: Good signature'
 awk "/${regex_begin}/ { f = 1 } /${regex_end}/ { f = 0 } f" <(echo -n "${result}") \
     | sed -r "s/${regex_begin}//" \

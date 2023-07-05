@@ -32,6 +32,18 @@
             }
           },
           {
+            "id": "7e6512dcdf805d48",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "test.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "28b37df6f6245f20",
             "type": "leaf",
             "state": {
@@ -52,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1,
+        "currentTab": 2,
         "stacked": true
       }
     ],
@@ -119,7 +131,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes.md",
+                "file": "test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +148,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes.md",
+                "file": "test.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -159,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes.md"
+                "file": "test.md"
               }
             }
           }
@@ -180,14 +192,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0b9546b3ff845c33",
+  "active": "7e6512dcdf805d48",
   "lastOpenFiles": [
+    "notes.md",
     "test2.md",
     "frontmatter.yml~",
     "prepare.awk~",
     "frontmatter.yml",
     "frontmatter.md",
-    "notes.md",
     "prepare.awk",
     "4913",
     "awk-test.awk~",
