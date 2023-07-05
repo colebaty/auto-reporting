@@ -162,6 +162,10 @@
   },
   "active": "6aceec1886ca71a8",
   "lastOpenFiles": [
+    "templates/paste-image-rename.yml",
+    "templates/frontmatter.yml",
+    "templates/templates.md",
+    "templates",
     "img/img.md",
     "img",
     "notes.md",
@@ -178,9 +182,7 @@
     "prepare.awk",
     "4913",
     "awk-test.awk~",
-    "awk-test.awk",
     "test3.md",
-    "test.md~",
     "img/replace-me.png",
     "img/Pasted image 20230704102248.png",
     "img/paste-image-rename-plugin.png",
@@ -205,7 +207,6 @@
     "INE/03 - Host & Network Penetration Testing/Social Engineering/Social Engineering.md",
     "INE/03 - Host & Network Penetration Testing/Post Exploitation/Post-Exploitation.md",
     "Neat Terminal Tricks.md",
-    "INE/03 - Host & Network Penetration Testing/System,Host-Based attacks/Linux Credential Dumping.md",
-    "INE/01 - Assessment Methodologies/Enumeration.md"
+    "INE/03 - Host & Network Penetration Testing/System,Host-Based attacks/Linux Credential Dumping.md"
   ]
 }

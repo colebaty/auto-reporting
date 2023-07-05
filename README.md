@@ -31,3 +31,4 @@ For example, by using the Paste Image Rename plugin, we can quickly add descript
 
 # To Do
 - [ ] incorporate automatic references to images?
+- [ ] automatically include frontmatter in new notes (for image rename)
