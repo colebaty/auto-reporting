@@ -52,7 +52,7 @@
             }
           }
         ],
-        "currentTab": 2,
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -119,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "test2.md",
+                "file": "notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "test2.md",
+                "file": "notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -159,7 +159,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "test2.md"
+                "file": "notes.md"
               }
             }
           }
@@ -180,14 +180,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "71e271765411578a",
+  "active": "0b9546b3ff845c33",
   "lastOpenFiles": [
     "test2.md",
+    "frontmatter.yml~",
+    "prepare.awk~",
     "frontmatter.yml",
     "frontmatter.md",
     "notes.md",
     "prepare.awk",
-    "prepare.awk~",
     "4913",
     "awk-test.awk~",
     "awk-test.awk",
@@ -202,7 +203,6 @@
     "img/Pasted image 20230623101535.png",
     "img/Pasted image 20230623101259.png",
     "jovian.key",
-    "jupiter.key",
     "img/Pasted image 20230623095621.png",
     "img/Pasted image 20230623094809.png",
     "img/Pasted image 20230623094325.png",
