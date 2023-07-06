@@ -91,15 +91,8 @@ Confirming the parameter is injectible:
 ![replace-me-9](img/replace-me-9.png)
 ![replace-me-10](img/replace-me-10.png)
 
-# Foothold
-
-Database dumping confirms the back-end database as a PostgreSQL database, but there isn't much of value to be found.  We learn about a Grafana user, but that leads nowhere productive I've found.  There's a massive table that takes forever to dump, but you can ignore it.
-
-## Initial Foothold: `sqlmap --os-shell`
-
+![03 - Foothold](03%20-%20Foothold.md)
 Use BurpSuite to save the injectible request - this can be used with `sqlmap` in order to simplify back-end database enumeration.  You can use any filename - we chose `kiosk.req`.
-
-![](00%20-%20Enumeration#^c405af)
 
 Confirm that the request is usable.
 
@@ -107,15 +100,17 @@ Confirm that the request is usable.
 sqlmap -r kiosk.req # change filename as needed
 ```
 
-![Pasted image 20230616144443](img/Pasted%20image%2020230616144443.png)
+![Pasted image 20230616144443](img/rename-me.png)
 
 ### Testing for vulnerability to `--os-shell`
 `sqlmap --help`: 
-![Pasted image 20230616144749](img/Pasted%20image%2020230616144749.png)
+![Pasted image 20230616144749](img/rename-me-1.png)
 
 So far, we've confirmed that the captured injectible request is usable by `sqlmap`. Use the command below to gain an `--os-shell` on the target:
 
-![](00%20-%20Enumeration#^a06044)
+```bash
+sqlmap -r kiosk.req --os-shell
+```
 
 The output from this shell is really cluttered, so it's not shown here.  Do some poking around to confirm these things:
 
@@ -123,9 +118,9 @@ The output from this shell is really cluttered, so it's not shown here.  Do some
 * it is not possible to change directories, but you can read other directories and files
 * you can use this shell to reach back to the attacker machine
 
-![Pasted image 20230622104943](img/Pasted%20image%2020230622104943.png)
+![Pasted image 20230622104943](img/rename-me-3.png)
 
-![Pasted image 20230622105103](img/Pasted%20image%2020230622105103.png)
+![Pasted image 20230622105103](img/rename-me-4.png)
 
 The two images above confirm that we can 
 1. use `wget` to transfer files from the attacker machine to the target, and
@@ -308,14 +303,7 @@ ssh -i juno.key \
 
 After the connection and port forwarding are established, access the ports from the attacker in a browser at `http://localhost:<attacker port>`
 
-#### Port 3000
-![Pasted image 20230622221635](img/Pasted%20image%2020230622221635.png)
-Gee, this looks familiar.  Next!
-
-#### Port 8888
-
-![Pasted image 20230622223950](img/Pasted%20image%2020230622223950.png)
-
+![04 - other listening services](04%20-%20other%20listening%20services.md)I
 A Jupyter notebook instance, asking for a token. Let's go find one.
 
 As `juno`, attempts to use the `jupyter notebook list` command fail:
