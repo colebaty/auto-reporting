@@ -41,3 +41,4 @@ cat ${files} \
          --top-level-division=chapter \
          --highlight-style breezedark
 ```
+texlive-base texlive-binaries texlive-fonts-extra texlive-fonts-extra-links texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-pictures texlive-plain-generic

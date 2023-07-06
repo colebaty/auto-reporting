@@ -13,8 +13,6 @@ There's nothing terribly wrong with this process, but it is very inefficient and
 
 The aim with this is to help streamline the process, taking notes and screenshots as I progress through the lab or test, so that by the time it's over almost all of the content of the report is collected and assembled.
 
-Uses Eisvogel LaTeX template.
-
 ## Intent
 The intent for this repo is for it to be used as a "starter" for reporting on tests, labs, etc.  This was designed for the Obsidian Markdown editor in order to take advantage of some of the native features as well as community plugins.
 
@@ -22,16 +20,25 @@ For example, by using the Paste Image Rename plugin, we can quickly add descript
 
 # Requirements
 ## Software
-- Obsidian Markdown Editor
-- noraj requirements
-    - pandoc
-    - Eisvogel
-    - etc.
-- etc.
+- [Obsidian Markdown Editor](https://obsidian.md) , with the following plugins:
+    * Paste image rename plugin
+    * Obsidian Link Converter plugin
+    * Obsidian Heading Shifter plugin
+- [`pandoc`](https://pandoc.org/installing.html)
+- [The Eisvogel LaTeX template](https://github.com/Wandmalfarbe/pandoc-latex-template#installation)
+* LaTeX/Texlive - see below
 
-## Plugins
-- paste image rename
-- Obsidian link converter: easily and instantly convert between !\[\[Wiki\]\] and !\[CommonMark\]\(url\) style transclusion/embed links. 
+### Minimum LaTeX installation
+
+A full LaTeX installation is 1GB+, so if space is tight (or you just don't want bloat), this is the minimum set of packages you need to get off the ground.
+
+```bash
+apt install texlive-base texlive-binaries \
+    texlive-fonts-extra texlive-fonts-extra-links \
+    texlive-fonts-recommended texlive-latex-base \
+    texlive-latex-extra texlive-latex-recommended \
+    texlive-pictures texlive-plain-generic
+```
 
 # Installation
 Ensure you have all the required software and plugins listed above.
@@ -66,14 +73,17 @@ In this part, we're taking advantage of Obsidian's native ability to quickly spl
 
 Maybe I'll make a video to better demonstrate what I mean here.  Need to think on this.
 
+![](img/test-image-for-titus.png)
 
 # To Do
 - [ ] incorporate automatic references to images?
 - [ ] scripts
     - [ ] generate report
         - [ ] gather files: frontmatter, md
+            - [ ] pass in a list of files to be processed in the order in which they're passed in
+            - [ ] pass in a file containing a list of the files to be processed in that order
     - [ ] render/preview markdown document
 - [ ] frontmatter
     - [ ] automatically include frontmatter in new notes (for image rename)
-    - [ ] determine what maps to where from frontmatter -> report
+    - [x] determine what maps to where from frontmatter -> report
         - [ ] make frontmatter template
