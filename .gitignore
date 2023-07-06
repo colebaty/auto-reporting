@@ -3,3 +3,4 @@ output/*-*-Exam-Report.pdf
 .vscode
 *.swp
 .obsidian/workspace.json
+[0-9]*.md
