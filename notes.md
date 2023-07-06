@@ -26,3 +26,18 @@ good progress with this
 
 - [x] does resizing work with markdown tags?
     it does, but pandoc doesn't know what to do with them.
+
+# code
+```bash
+files=(templates/frontmatter.yml Executive\ Summary.md {00..10}*.md)
+cat ${files} \
+    | awk -f prepare.awk - \
+    | pandoc - -o ./test.pdf \
+         --from markdown+yaml_metadata_block+raw_html \
+         --template eisvogel \
+         --table-of-contents \
+         --toc-depth 6 \
+         --number-sections \
+         --top-level-division=chapter \
+         --highlight-style breezedark
+```
