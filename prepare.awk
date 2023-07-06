@@ -1,8 +1,6 @@
 #!/usr/bin/awk -f 
 
-BEGIN {
-    insideCodeBlock = 0
-}
+BEGIN { insideCodeBlock = 0 }
 
 # checks for markdown, yaml code blocks
 /^(```.*|---)/ {
@@ -22,7 +20,7 @@ insideCodeBlock { print }
 
         # change hyphens to spaces
         altText = matches[1]
-        gsub("-", " ", altText)
+        gsub(/[-.]/, " ", altText)
         
         # print everything on its own line
         print "\n" "![" altText "](img/" matches[1] "." matches[2] ")" "\n"
