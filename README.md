@@ -31,7 +31,7 @@ For example, by using the Paste Image Rename plugin, we can quickly add descript
 
 ## Plugins
 - paste image rename
-- Obsidian link converter
+- Obsidian link converter: easily and instantly convert between !\[\[Wiki\]\] and !\[CommonMark\]\(url\) style transclusion/embed links. 
 
 # Installation
 Ensure you have all the required software and plugins listed above.
@@ -40,27 +40,40 @@ Clone this repo.
 
 In Obsidian, open this repo as a vault.
 
+## Optional - version control
+
+After cloning, remove the `.git` directory from the root of the repo.  Then, to create a new git instance, run the commands below:
+
+```bash
+# initializes a new git session in the current directory
+# with the default branch 'main'
+git init -b main
+```
+
+Now you have version history, and you can back up your personal fork of this repo to any of the popular Git hosting services, e.g. GitLab, GitHub, your own private git server, etc.
+
 # Configuration
 MTF
 - "markdown" links, not "wiki" links
 
 
-# Usage
+# Suggested Usage
 ## Take notes
-Take your notes in markdown, however you like.  
+Take your notes in markdown, however you like.
 
-## Compile into single document
-Copy-paste, use `cat`, whatever you need.  As an example, consider a penetration test report with three sections: Executive Summary, Report of Findings, Mitigation
+## Organize the flow of the report
+In this part, we're taking advantage of Obsidian's native ability to quickly split files up.
 
-You could have each of these sections in their own file, and then do something like
+Maybe I'll make a video to better demonstrate what I mean here.  Need to think on this.
 
-```
-cat Executive-Summary.md Report-of-Findings.md Mitigation.md > report.md
-```
 
 # To Do
 - [ ] incorporate automatic references to images?
-- [ ] automatically include frontmatter in new notes (for image rename)
 - [ ] scripts
     - [ ] generate report
+        - [ ] gather files: frontmatter, md
     - [ ] render/preview markdown document
+- [ ] frontmatter
+    - [ ] automatically include frontmatter in new notes (for image rename)
+    - [ ] determine what maps to where from frontmatter -> report
+        - [ ] make frontmatter template
