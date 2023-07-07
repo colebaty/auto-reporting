@@ -1,11 +1,11 @@
 ---
 # pandoc settings
-title: "Offensive Security Certified Professional Exam Report"
-author: ["student@youremailaddress.com", "OSID: XXXX"]
-date: "2020-07-25"
+title: "[REPORT TITLE]"
+author: ["student@youremailaddress.com", "[Other info, e.g. OSID]"]
+date: "2023-07-07"
 subject: "Markdown"
 keywords: [Markdown, Example]
-subtitle: "OSCP Exam Report"
+subtitle: "[SUBTITLE]"
 lang: "en"
 titlepage: true
 titlepage-color: "1E90FF"

@@ -28,6 +28,7 @@ good progress with this
     it does, but pandoc doesn't know what to do with them.
 
 # code
+## generate report - example
 ```bash
 files=(templates/frontmatter.yml Executive\ Summary.md {00..10}*.md)
 cat ${files} \
@@ -41,4 +42,20 @@ cat ${files} \
          --top-level-division=chapter \
          --highlight-style breezedark
 ```
-texlive-base texlive-binaries texlive-fonts-extra texlive-fonts-extra-links texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-pictures texlive-plain-generic
+
+## replace date in frontmatter
+```bash
+today=$(date +%F)
+sed -r "s/(date: \")([^\"])\"/\1${today}/" templates/frontmatter.yml
+ 
+```
+# auto reference images
+
+```markdown
+
+![some link \label{someUniqueLabel}](uri/to/resource.png)
+
+See Figure \label{someUniqueLabel}
+```
+
+- [x] update `prepare.awk` matching regex

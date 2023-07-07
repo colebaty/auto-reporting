@@ -16,8 +16,9 @@ Some quick manual enumeration identifies some useful extensions
 * `.html`
 * `.jpg|svg|gif`
 
-![replace-me-1](img/replace-me-1.png)
+![jupiter.htb\label{myLabel}](img/replace-me-1.png)
 
+See figure \ref{myLabel}
 
 This looks like a static site. Attempts to enumerate endpoints failed with FerOxBuster and GoBuster.
 
