@@ -209,7 +209,7 @@ For example, suppose you paste an image and rename it to `nmap-scan-leaking-doma
 
 As you're writing your report, you may want to refer to specific images/figures, but there's no way to be sure how it will be labeled (e.g. Figure 2.1) until the report is generated.
 
-By adding `\label{someLabel}` to the alt-text part of the embed link -- that is, the text between the square brackets -- you can refer back to that figure in the text of the report with `label{someLabel}`, and Pandoc will take care of the rest.
+By adding `\label{someLabel}` to the alt-text part of the embed link -- that is, the text between the square brackets -- you can refer back to that figure in the text of the report with `ref{someLabel}`, and Pandoc will take care of the rest.
 
 For example, suppose your markdown notes contain the following embed link:
 
@@ -221,7 +221,7 @@ For example, suppose your markdown notes contain the following embed link:
 If you'd like to refer back to this figure later in your markdown, simply write
 
 ```markdown
-See Figure \\label{someUniqueLabel}
+See Figure \\ref{someUniqueLabel}
 ```
 
 The rendered report will look like this:
