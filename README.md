@@ -71,6 +71,12 @@ This is a sampling of some of the configuration settings in this repo.  This lis
 * images/attachments are stored in `./img`
 * [suggested Heading Shifter hotkeys](https://github.com/k4a-l/obsidian-heading-shifter#features)
 
+## `templates/frontmatter.yml`
+
+This file contains the metadata that populates the Title, Subtitle, Date, etc. fields in the report.  Simply update this file with your information and it will automatically appear in the report.
+
+Alternatively, you can specify a custom frontmatter file with the `-y` flag.
+
 # Suggested Usage
 ## Take notes
 Take your notes in markdown, however you like.
@@ -139,6 +145,31 @@ This file achieves the same purpose as the pathname expansion in the previous se
 
 ## Generate the report
 
+### Manually generating the report - Beta version
+
+The code in this section will eventually find its way into the `generate.sh` script, but for now please use these commands to generate the report manually.
+
+```bash
+# replace the date in frontmatter.yml with today's date
+today=$(date +%F)
+sed -ri "s/(date: \")([^\"])\"/\1${today}/" templates/frontmatter.yml
+
+# replace '*.md' with whatever expands to the list you want
+files=(templates/frontmatter.yml *.md)
+cat ${files} \
+    | awk -f prepare.awk - \
+    | pandoc - -o ./test.pdf \
+         --from markdown+yaml_metadata_block+raw_html \
+         --template eisvogel \
+         --table-of-contents \
+         --toc-depth 6 \
+         --number-sections \
+         --top-level-division=chapter \
+         --highlight-style breezedark
+```
+ 
+### FOR FUTURE RELEASE - NOT CURRENTLY WORKING
+Just sketching out the script here - will implement later.
 ```bash
 ./generate.sh [-p] [-f LIST] [-o PDF] FILE1 [FILE2 FILE3 ...]
 
@@ -159,6 +190,10 @@ This file achieves the same purpose as the pathname expansion in the previous se
 ```
 
 # How do I ...
+
+## ...get my name and stuff on the report?
+
+Provided in this repo is the file `templates/frontmatter.yml`.  Simply update the relevant sections with your information, and it will appear in the report.
 
 ## ...do the automatic image labeling?
 
