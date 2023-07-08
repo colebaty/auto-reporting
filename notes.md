@@ -11,19 +11,7 @@ good progress with this
     - [x] all \# headers, and links to images should appear on their own lines, i.e. separated by newlines
     - [x]  for the future: batch convert old reports link styles to markdown, i.e. non-wiki
 
-```markdown
-##### BAD #####
-
-# some header
-![ link to some file]( link to some file)
-
-##### GOOD #####
-
-# some header <- on its own line
-
-![ link to some file]( link to some file) <- on its own line
-```
-
+![links and headers example](links%20and%20headers%20example.md)
 - [x] does resizing work with markdown tags?
     it does, but pandoc doesn't know what to do with them.
 
