@@ -33,15 +33,27 @@ insideCodeBlock { print }
     if (substr(trigger[1], 1, 1) == "!") {
         # use matching groups to grab basename, optional reference label,
         # extension of linked file
-        match(trigger[1], /!\[.*(\\.*[^]])\]\(img\/(.*)\.(.*)\)/, matches)
+        match(trigger[1], /!\[(.*\\[^}]*})?.*\]\(img\/(.*)\.(.*)\)/, matches)
+
+        #print "testing for label match: " (1 in matches)
+        #print "testing for basename match: " (2 in matches)
+        #print "testing for extension match: " (3 in matches)
+
+        label = ""
+        if (1 in matches) {
+            label = gensub(/[^\\]*(\\[^}]*\})/, " \\1", "g", matches[1])
+        }
+
+        #print "label: " label
+        basename = matches[2]
+        #print "basename: " basename
+        extension = matches[3]
+        #print "extension: " extension
 
         # change hyphens to spaces
-        label = matches[1]
-        basename = matches[2]
-        extension = matches[3]
-
         altText = matches[2]
         gsub(/[-.]/, " ", altText)
+        #print "altText: " altText
         
         # print everything on its own line
         print "\n" "![" altText label "](img/" basename "." extension ")" "\n"
