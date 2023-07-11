@@ -20,4 +20,14 @@ This is useful for "importing" older, existing notes taken in Markdown, such as 
 
 
 
-# Extracting notes into separate files
+# Creating report "draft"
+
+ - [ ] extractions 
+     - [ ] Target
+     - [ ] Enumeration
+ - [ ] promote enumeration file
+ - [ ] add automatic image reference
+ - [ ] generate report
+
+## Extracting notes into separate files
+In the [Sample notes](Sample%20notes.md) file, 
