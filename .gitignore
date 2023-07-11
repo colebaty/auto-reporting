@@ -4,3 +4,4 @@ output/*-*-Exam-Report.pdf
 *.swp
 .obsidian/workspace.json
 [0-9]*.md
+test/
