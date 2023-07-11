@@ -33,6 +33,16 @@ This is intended for use only on Linux.  I have not tested this on Windows, and 
 * LaTeX/TeXlive - see below
 * `awk` - should come standard with Linux distro
 
+### Obsidian plugin breakdown
+
+| plugin name | what it does | why it's needed | 
+| --- | --- | --- |
+| Paste Image Rename | Renames images as they're pasted into the project. | better attachment organization; image filenames become captions in report |
+| Obsidian Link Converter | ensures links are CommonMark markdown spec with relative paths | Pandoc only recognizes CommonMark link formats. Also makes it trivially easy to convert older notes you may have with Wiki style links (`![[some link]]`) |
+| Obsidian Heading Shifter | quickly promotes/demotes Markdown headers | Allows you to quickly promote and demote headings in an extracted section to match what they need to be in the final report |
+
+
+
 ### Minimum LaTeX installation
 
 A full LaTeX installation is 1GB+, so if space is tight (or you just don't want bloat), this is the minimum set of packages you need to get off the ground.
