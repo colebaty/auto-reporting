@@ -201,6 +201,10 @@ Just sketching out the script here - will implement later.
 
 # How do I ...
 
+## ...use Markdown if I'm not very familiar with it?
+
+Obsidian ships with a read-only "Sandbox Vault" - this is a handy reference to have open as you write or edit your notes.
+
 ## ...get my name and stuff on the report?
 
 Provided in this repo is the file `templates/frontmatter.yml`.  Simply update the relevant sections with your information, and it will appear in the report.

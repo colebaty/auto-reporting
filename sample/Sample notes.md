@@ -1,6 +1,6 @@
 # Introduction
 
-This document contains some sample notes from a simulated test of a DVWA instance.  Follow the [[Sample instructions]] for a sample workflow of how to slice these notes up into the way you'd like them to appear in the report.
+This document contains some sample notes from a simulated test of a DVWA instance.  Follow the [Sample instructions](Sample%20instructions.md) for a sample workflow of how to slice these notes up into the way you'd like them to appear in the report.
 
 # Target - `dvwa.pwn.me` 172.16.0.9/24
 
@@ -8,7 +8,7 @@ Scope of test is limited to the single subdomain/virtual host `dvwa.pwn.me` on h
 
 ## Enumeration
 
-![](../img/dvwa-nmap-scan.png)
+![dvwa-nmap-scan](../img/dvwa-nmap-scan.png)
 
 ![](../img/redirect-to-login-page.png)
 Accessing `http://dvwa.pwn.me` takes us via redirect to `/login.php`.
@@ -68,3 +68,5 @@ Using `hydra`, we validated the credentials dumped from the DVWA users table.
 
 As the `www-data` user, discovered flag at `/home/user/.flag2.txt`.
 Readable only by `user`
+
+![user-flag](../img/user-flag.png)
