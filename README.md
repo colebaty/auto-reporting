@@ -251,8 +251,9 @@ I've included the [FAQ](FAQ.md) from the original project.  If something you wan
 - [ ] scripts
     - [ ] generate report
         - [ ] gather files: frontmatter, md
-            - [ ] pass in a list of files to be processed in the order in which they're passed in
-            - [ ] pass in a file containing a list of the files to be processed in that order
+            - [ ] read from STDIN
+            - [x] pass in a list of files to be processed in the order in which they're passed in
+            - [x] pass in a file containing a list of the files to be processed in that order
         - [ ] render/preview markdown document
 - [ ] frontmatter
     - [ ] ~~automatically include frontmatter in new notes (for image rename)~~ handle in script - should be first file in list of files
