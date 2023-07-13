@@ -131,8 +131,7 @@ done
 # reset IFS
 #IFS="${IFS_BAK}"
 
-# subtract out the frontmatter.yml file
-log "# input files: $((${#INPUT_FILES[@]} - 1))"
+log "# input files: ${#INPUT_FILES[@]}"
 
 # get lines from input files
 declare -a TEXT=()

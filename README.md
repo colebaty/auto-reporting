@@ -42,7 +42,6 @@ This is intended for use only on Linux.  I have not tested this on Windows, and 
 | Obsidian Heading Shifter | quickly promotes/demotes Markdown headers | Allows you to quickly promote and demote headings in an extracted section to match what they need to be in the final report |
 
 
-
 ### Minimum LaTeX installation
 
 A full LaTeX installation is 1GB+, so if space is tight (or you just don't want bloat), this is the minimum set of packages you need to get off the ground.
@@ -78,7 +77,7 @@ This is a sampling of some of the configuration settings in this repo.  This lis
 
 * `vim` keybindings
 * line numbers
-* images/attachments are stored in `./img`
+* images/attachments are stored in `./img` by default
 * [suggested Heading Shifter hotkeys](https://github.com/k4a-l/obsidian-heading-shifter#features)
 
 ## `templates/frontmatter.yml`
@@ -88,76 +87,33 @@ This file contains the metadata that populates the Title, Subtitle, Date, etc. f
 Alternatively, you can specify a custom frontmatter file with the `-y` flag.
 
 # Suggested Usage
+
 ## Take notes
-Take your notes in markdown, however you like.
+Take your notes in markdown, however you like. 
 
 ## Organize the flow of the report
-I'll start by saying there's no wrong way to do this.  But what's attractive about Obsidian to me is that it's very easy to "extract" selections from one file into a whole new file.
 
-Why is this so useful?  Because then we can arrange these files in the order we want them to appear in the report, concatenate them all together, and run them all through Pandoc (in order!) fairly easily with some rudimentary bash-foo.
+There's tons of flexibility here, and no wrong way to do this. My general approach is to take notes in one big document as I'm testing, and then use Obsidian's "extract selection into new file" feature to "slice and dice" my notes into lots of smaller files, which will later be assembled into the final report.
 
-### Example 1 - Sequential filenames
+Generally, you'll want to "extract" anything you think might appear in more than one place, whether that's one or more places within the same report, or in two or more documents -- think "walkthrough" versus "report".
 
-As I'm extracting files, I"ll be prompted to rename them.  I can prepend each file name with, for example, a two-digit number representing the order I want to see this content in.  For example, suppose I have the following files in my working directory that I want to appear in this exact order in the report:
-
-```bash
-ls {00..99}*.md
-'00 - Enumeration.md'
-'011 - gobuster results.md'
-'01 - web server home page.md'
-'02 - Subdomain kiosk.md'
-'03 - sql injection.md'
-'04 - foothold with sql injection.md'
-'05 - more ports.md'
-'06 - users with shell access.md'
-'07 - Pivot to juno user.md'
-'08 - network shadow simulator.md'
-'09 - user flag.md'
-'10 - SSH port forwarding - investigating other listening services.md'
-'11 - other services.md'
-'12 - jupyter notebook.md'
-'13 - reverse shell as jovian.md'
-'14 - root flag.md'
-```
-
-In the command above, the `{00..99}*.md`  represents a [bash pathname expansion](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Filename-Expansion) which reliably and predictably lists these files in the order they appear in this list:
-- `{00..99}` - this is the same as `seq 00 99`; that is, the list of two-digit integers from `00` to `99`
-- `*` - expands to all matching patterns.
-
-So, for example, `00*.md` means "all filenames starting `00` followed by zero or more characters of any type followed by `.md`", which just so happens to be `00 - Enumeration.md` in this case.
-
-Suppose you've worked all the way through `12`, but you've discovered you'd really like to add something between `00` and `01`.  You might have noticed that the list above includes a `011`.  This number holds no special meaning other than pathname expansion will always put it between `00` and `01`. 
-
-### Example 2 - a file containing a list of filenames
-
-Another approach could be to maintain a file which contains a list of the files you want to go in the report, in the order in which you want them to appear:
-```
-# files.txt
-Enumeration.md
-gobuster-results.md
-web-server-home-page.md
-Subdomain-kiosk.md
-sql-injection.md
-foothold-with-sql-injection.md
-more-ports.md
-users-with-shell-access.md
-Pivot-to-juno-user.md
-network-shadow-simulator.md
-user-flag.md
-SSH-port-forwarding---investigating-other-listening-services.md
-other-services.md
-jupyter-notebook.md
-reverse-shell-as-jovian.md
-root-flag.md
-```
-
-This file achieves the same purpose as the pathname expansion in the previous section, with the advantage of being perhaps a little more explicit.  Either way, the result is the same - this list of files will be passed in this order for rendering by Pandoc.
+Future releases [will include a tutorial](README.md#Coming%20Soon!) with some working examples to give you a good idea of how to use this repo.
 
 ## Generate the report
 
 ### Usage
 
 ![](img/usage.png)
+
+The `generate.sh` script was written to allow you the most flexibility in assembling the report.  In its most basic form, you can invoke it with the following command:
+
+```bash
+./generate.sh README.md
+```
+
+The `report.pdf` file included this repo was generated with the commands shown in the screenshot below.  Note the `-v` flag which logs debug info to `STDERR`. 
+
+![](img/generating-report-from-README-file.png)
 
 # How do I ...
 
@@ -206,20 +162,13 @@ The rendered report will look like this:
 
 I've included the [FAQ](FAQ.md) from the original project.  If something you want to do isn't covered here, submit an issue and we'll try and figure it out!
 
-# To Do
-- [x] incorporate automatic references to images?
-- [x] scripts
-    - [x] generate report
-        - [x] gather files: frontmatter, md
-            - [x] read from STDIN
-            - [x] pass in a list of files to be processed in the order in which they're passed in
-            - [x] pass in a file containing a list of the files to be processed in that order
-        - [x] render/preview markdown document
-- [x] frontmatter
-    - [x] ~~automatically include frontmatter in new notes (for image rename)~~ handle in script - should be first file in list of files
-    - [x] determine what maps to where from frontmatter -> report
-        - [x] make frontmatter template
-    - [ ] automate cherrytree to markdown - docker?
+# Coming Soon!
+## Tutorial
 
-# Long term to-do
-- [ ] some sort of "live preview" template solution
+Future releases will include a tutorial for orientation and practice.  Topics to be covered will include
+
+- extracting note contents into new notes
+- organizing the "flow" of the report
+- converting from CherryTree format to Markdown 
+
+If there's a feature you'd like to see added, please open a new issue with the request!
