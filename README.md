@@ -259,6 +259,7 @@ I've included the [FAQ](FAQ.md) from the original project.  If something you wan
     - [ ] ~~automatically include frontmatter in new notes (for image rename)~~ handle in script - should be first file in list of files
     - [x] determine what maps to where from frontmatter -> report
         - [ ] make frontmatter template
+    - [ ] automate cherrytree to markdown - docker?
 
 # Long term to-do
 - [ ] some sort of "live preview" template solution

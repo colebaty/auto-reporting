@@ -7,14 +7,16 @@ NONE='\e[0m'
 
 function usage() {
     cat <<-EOF
-$0 [-d] [-p] [-f LIST [-f LIST ...]] [-o PDF] [-y FRONTMATTER] FILE1 [FILE2 FILE3 ...]
+$0 [-vdp] [-f LIST [-f LIST ...]] [-o PDF] [-y FRONTMATTER] FILE1 [FILE2 FILE3 ...]
 
-    Process and pass FILE(s) to pandoc for rendering into a report 
-    with the Eisvogel LaTeX template. FILEs are processed in the 
-    order in which they appear in the list. If FILE is missing 
-    or - will read from STDIN.
+    Process and pass FILE(s) to pandoc for rendering into a report with the 
+    Eisvogel LaTeX template. FILEs are processed in the order in which they 
+    appear in the list. If FILE is missing or - will read from STDIN.
 
-    -d              log debug info to STDERR
+    -v              verbose; log debug info to STDERR
+
+    -d              update FRONTMATTER metadata file with today's date 
+                    in YYYY-MM-DD (%F) format
 
     -p              preview: renders the markdown that will 
                     be passed to pandoc
@@ -23,8 +25,8 @@ $0 [-d] [-p] [-f LIST [-f LIST ...]] [-o PDF] [-y FRONTMATTER] FILE1 [FILE2 FILE
                     in the order in which they should appear in the
                     report. multiple files are processed in the order 
                     in which they appear in the invocation. contents of
-                    files in LIST(s) will appear in the report before the contents 
-                    of FILE(s)
+                    files in LIST(s) will appear in the report before the 
+                    contents of FILE(s)
 
     -o PDF          specify output file name with extension, e.g. path/to/report.pdf
                     default is report.pdf
@@ -56,11 +58,15 @@ FRONTMATTER="${TEMPLATES_DIR}/frontmatter.yml"
 
 declare -a FILE_LIST=() # empty list
 
-while getopts ':dpf:o:y:' OPTION; do
+while getopts ':vdpf:o:y:' OPTION; do
     case "${OPTION}" in
-        d)
+        v)
             DEBUG=""
             log "debug enabled"
+            ;;
+        d)
+            UPDATE_DATE=""
+            log "UPDATE_DATE set"
             ;;
         p)
             PREVIEW="" 
@@ -96,12 +102,9 @@ done
 
 log "num list files: ${#FILE_LIST[@]}"
 log "output file: ${OUTPUT_FILE}"
-log "frontmatter file: ${FRONTMATTER}"
+log "using ${FRONTMATTER} for metadata file"
 
 declare -a INPUT_FILES=()
-
-INPUT_FILES+=("${FRONTMATTER}")
-log "added ${FRONTMATTER} to INPUT_FILES"
 
 # get file lists if supplied
 if [[ ${#FILE_LIST[@]} -gt 0 ]]; then
@@ -152,26 +155,35 @@ for file in ${INPUT_FILES[@]}; do
     else
         while IFS= read -r line; do
             TEXT+=("${line}\n")
-        done < "${file/^-$/"${PIPED_DATA}"}" # sub piped data for -
+        done < "${file}" # sub piped data for -
     fi
 done
 
-# remove single leading space for indices >= 1
-PROOF=$(echo -e "${TEXT[@]}" | sed 's/^ //g') 
 
 # render the output
-if [[ -v PREVIEW ]]; then
-    awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${PROOF}")
-else
-    awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${PROOF}")\
-        | pandoc - -o "${OUTPUT_FILE}" \
-         --from markdown+yaml_metadata_block+raw_html \
-         --template eisvogel \
-         --table-of-contents \
-         --toc-depth 6 \
-         --number-sections \
-         --top-level-division=chapter \
-         --highlight-style breezedark
-     
-    log "file ${OUTPUT_FILE} created"
+
+# remove single leading space for indices >= 1
+TEXT=$(echo -e "${TEXT[@]}" | sed 's/^ //g') 
+
+[[ ! -v PREVIEW ]] && STANDALONE="-s"
+log "STANDALONE: ${STANDALONE}"
+
+if [[ -v UPDATE_DATE ]]; then
+    today="$(date +%F)"
+    sed -ri "s/(date: \")([^\"]*)\"/\1${today}\"/" ${FRONTMATTER}
+    log "replaced date in ${FRONTMATTER} with ${today}"
 fi
+
+
+log "generating report"
+awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${TEXT}")\
+    | pandoc ${STANDALONE:-} -o "${OUTPUT_FILE}" "${FRONTMATTER}" - \
+     --from markdown+yaml_metadata_block+raw_html \
+     --template eisvogel \
+     --table-of-contents \
+     --toc-depth 6 \
+     --number-sections \
+     --top-level-division=chapter \
+     --highlight-style breezedark
+ 
+log "file ${OUTPUT_FILE} created"
