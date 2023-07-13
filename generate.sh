@@ -45,8 +45,8 @@ function log() {
         && echo -e "$COLOR[+]$NONE $1" >&2
 }
 
-
-[[ $# -lt 2 ]] \
+# if no files listd and no pipe detected, print usage and exit
+([[ $# -lt 2 ]] && [[ ! -p /dev/stdin ]]) \
     && usage \
     && exit 1
 
@@ -173,16 +173,21 @@ if [[ -v UPDATE_DATE ]]; then
     log "replaced date in ${FRONTMATTER} with ${today}"
 fi
 
+if [[ -v PREVIEW ]]; then
+    log "generating markdown preview"
+    awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${TEXT}")
+else
+    log "generating report"
+    awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${TEXT}")\
+        | pandoc ${STANDALONE:-} -o "${OUTPUT_FILE}" "${FRONTMATTER}" - \
+         --from markdown+yaml_metadata_block+raw_html \
+         --template eisvogel \
+         --table-of-contents \
+         --toc-depth 6 \
+         --number-sections \
+         --top-level-division=chapter \
+         --highlight-style breezedark
+     
+    log "file ${OUTPUT_FILE} created"
+fi
 
-log "generating report"
-awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${TEXT}")\
-    | pandoc ${STANDALONE:-} -o "${OUTPUT_FILE}" "${FRONTMATTER}" - \
-     --from markdown+yaml_metadata_block+raw_html \
-     --template eisvogel \
-     --table-of-contents \
-     --toc-depth 6 \
-     --number-sections \
-     --top-level-division=chapter \
-     --highlight-style breezedark
- 
-log "file ${OUTPUT_FILE} created"
