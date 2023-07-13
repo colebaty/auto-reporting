@@ -155,49 +155,9 @@ This file achieves the same purpose as the pathname expansion in the previous se
 
 ## Generate the report
 
-### Manually generating the report - Beta version
+### Usage
 
-The code in this section will eventually find its way into the `generate.sh` script, but for now please use these commands to generate the report manually.
-
-```bash
-# replace the date in frontmatter.yml with today's date
-today=$(date +%F)
-sed -ri "s/(date: \")([^\"])\"/\1${today}/" templates/frontmatter.yml
-
-# replace '*.md' with whatever expands to the list you want
-files=(templates/frontmatter.yml *.md)
-cat ${files} \
-    | awk -f prepare.awk - \
-    | pandoc - -o ./test.pdf \
-         --from markdown+yaml_metadata_block+raw_html \
-         --template eisvogel \
-         --table-of-contents \
-         --toc-depth 6 \
-         --number-sections \
-         --top-level-division=chapter \
-         --highlight-style breezedark
-```
- 
-### FOR FUTURE RELEASE - NOT CURRENTLY WORKING
-Just sketching out the script here - will implement later.
-```bash
-./generate.sh [-p] [-f LIST] [-o PDF] FILE1 [FILE2 FILE3 ...]
-
-    Process and pass FILE(s) to pandoc for rendering into a report 
-    with the Eisvogel LaTeX template. FILEs are processed in the 
-    order in which they appear in the list.
-
-    -p          preview: renders the markdown that will be passed
-                to pandoc; opens in pager
-
-    -f LIST     a file containing the list of files to process
-                in the order in which they should appear in the
-                report; see README
-
-    -o PDF      specify output file name with extension
-                default is report.pdf
-
-```
+![](img/usage.png)
 
 # How do I ...
 
@@ -248,17 +208,17 @@ I've included the [FAQ](FAQ.md) from the original project.  If something you wan
 
 # To Do
 - [x] incorporate automatic references to images?
-- [ ] scripts
-    - [ ] generate report
-        - [ ] gather files: frontmatter, md
-            - [ ] read from STDIN
+- [x] scripts
+    - [x] generate report
+        - [x] gather files: frontmatter, md
+            - [x] read from STDIN
             - [x] pass in a list of files to be processed in the order in which they're passed in
             - [x] pass in a file containing a list of the files to be processed in that order
-        - [ ] render/preview markdown document
-- [ ] frontmatter
-    - [ ] ~~automatically include frontmatter in new notes (for image rename)~~ handle in script - should be first file in list of files
+        - [x] render/preview markdown document
+- [x] frontmatter
+    - [x] ~~automatically include frontmatter in new notes (for image rename)~~ handle in script - should be first file in list of files
     - [x] determine what maps to where from frontmatter -> report
-        - [ ] make frontmatter template
+        - [x] make frontmatter template
     - [ ] automate cherrytree to markdown - docker?
 
 # Long term to-do

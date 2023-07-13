@@ -1,3 +1,0 @@
-Right away, notice that there is an HTTP port open, hosting an nginx server.  The `http-title` NSE script identified a redirect to `http://jupiter.htb`
-
-![](img/test-test-test.png)
