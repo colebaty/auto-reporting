@@ -164,9 +164,6 @@ done
 # remove single leading space for indices >= 1
 TEXT=$(echo -e "${TEXT[@]}" | sed 's/^ //g') 
 
-[[ ! -v PREVIEW ]] && STANDALONE="-s"
-log "STANDALONE: ${STANDALONE}"
-
 if [[ -v UPDATE_DATE ]]; then
     today="$(date +%F)"
     sed -ri "s/(date: \")([^\"]*)\"/\1${today}\"/" ${FRONTMATTER}
@@ -179,7 +176,7 @@ if [[ -v PREVIEW ]]; then
 else
     log "generating report"
     awk -f ${WORKING_DIR}/prepare.awk <(echo -e "${TEXT}")\
-        | pandoc ${STANDALONE:-} -o "${OUTPUT_FILE}" "${FRONTMATTER}" - \
+        | pandoc -o "${OUTPUT_FILE}" "${FRONTMATTER}" - \
          --from markdown+yaml_metadata_block+raw_html \
          --template eisvogel \
          --table-of-contents \
