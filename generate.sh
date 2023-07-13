@@ -36,7 +36,7 @@ $0 [-vdp] [-f LIST [-f LIST ...]] [-o PDF] [-y FRONTMATTER] FILE1 [FILE2 FILE3 .
 EOF
 }
 
-# prints only if invoked with -d
+# prints only if invoked with -v
 # usage: log <string> [color = BLUE]
 function log() {
     COLOR=${BLUE}
