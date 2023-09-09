@@ -22,50 +22,45 @@ BEGIN { insideCodeBlock = 0 }
 }
 
 # do nothing to lines appearing inside code blocks
-insideCodeBlock { 
-    print "in"
-    print 
-}
+insideCodeBlock { print }
 
 # otherwise
 !insideCodeBlock {
-    print "out"
     # find lines beginning with header or link markdown
     match($0, /^(##*.*|!\[.*)$/, trigger)
 
     # if match exists and starts with bang
     if (substr(trigger[1], 1, 1) == "!") {
-        print "found link"
         # use matching groups to grab basename, optional reference label,
         # extension of linked file
         match(trigger[1], /!\[(.*\\[^}]*})?.*\]\((.*img\/)(.*)\.(.*)\)/, matches)
         #match(trigger[1], /!\[(.*\\[^}]*})?.*\]\([^\/]*\/?img\/(.*)\.(.*)\)/, matches)
 
-        print "testing for label match: " (1 in matches)
-        print "testing for path match: " (2 in matches)
-        print "testing for basename match: " (3 in matches)
-        print "testing for extension match: " (4 in matches)
+        #print "testing for label match: " (1 in matches)
+        #print "testing for path match: " (2 in matches)
+        #print "testing for basename match: " (3 in matches)
+        #print "testing for extension match: " (4 in matches)
 
         label = ""
         if (1 in matches) {
             label = gensub(/[^\\]*(\\[^}]*\})/, " \\1", "g", matches[1])
         }
 
-        print "label: " label
+        #print "label: " label
         path = matches[2]
-        print "path: " path
+        #print "path: " path
         basename = matches[3]
-        print "basename: " basename
+        #print "basename: " basename
         extension = matches[4]
-        print "extension: " extension
+        #print "extension: " extension
 
         # change hyphens to spaces
         altText = matches[3]
         gsub(/[-.]/, " ", altText)
-        print "altText: " altText
+        #print "altText: " altText
         
         # print everything on its own line
-        print "\n" "![" altText label "](img/" basename "." extension ")" "\n"
+        print "\n" "![" altText label "](" path basename "." extension ")" "\n"
     } else if (substr(trigger[1], 1, 1) == "#") { # else, if starts with #
         print "\n" $0 "\n"
     } else { # otherwise
