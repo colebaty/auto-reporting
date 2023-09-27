@@ -1,12 +1,4 @@
 {
-  "text-snippets-obsidian:text-snippets": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": " "
-    }
-  ],
   "obsidian-heading-shifter:apply-heading0": [
     {
       "modifiers": [
@@ -90,5 +82,22 @@
   "editor:open-search": [],
   "editor:open-search-replace": [],
   "global-search:open": [],
-  "editor:toggle-bold": []
+  "editor:toggle-bold": [],
+  "app:reload": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "R"
+    }
+  ],
+  "text-snippets-obsidian:text-snippets": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": " "
+    }
+  ]
 }

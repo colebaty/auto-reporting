@@ -14,8 +14,9 @@
     "/\\.(o|axf|srec|amp)/"
   ],
   "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "img",
+  "attachmentFolderPath": "./img",
   "useMarkdownLinks": true,
-  "newLinkFormat": "relative",
-  "showFrontmatter": false
+  "newLinkFormat": "absolute",
+  "showFrontmatter": false,
+  "promptDelete": false
 }

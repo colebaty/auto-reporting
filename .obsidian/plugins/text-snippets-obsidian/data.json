@@ -1,0 +1,16 @@
+{
+  "snippets_file": "snippets : It is an obsidian plugin, that replaces your selected text.\nlabel :  \\label{$end$} \nref : \\\\\\\\ref{$end$}",
+  "snippets": [
+    "snippets : It is an obsidian plugin, that replaces your selected text.",
+    "label :  \\label{$end$} ",
+    "ref : \\\\\\\\ref{$end$}"
+  ],
+  "endSymbol": "$end$",
+  "newlineSymbol": "$nl$",
+  "stopSymbol": "$tb$",
+  "pasteSymbol": "$pst$",
+  "useTab": false,
+  "useSpace": false,
+  "wordDelimiters": "$()[]{}<>,.!?;:'\"\\/",
+  "isWYSIWYG": true
+}
