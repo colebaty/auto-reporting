@@ -17,7 +17,7 @@ BEGIN { insideCodeBlock = 0 }
 # checks for markdown, yaml code blocks
 # TODO:
 #   - [ ] account for nested markdown blocks
-/^(```.*|---)^/ {
+/^(```.*|---)$/ {
     insideCodeBlock = !insideCodeBlock # toggle
 }
 
@@ -32,7 +32,7 @@ insideCodeBlock { print }
     # if match exists and starts with bang
     if (substr(trigger[1], 1, 1) == "!") {
         # use matching groups to grab basename, optional reference label,
-        # extension of linked file
+        # extension of linked file, optional sizing param
         match(trigger[1], /!\[(.*\\[^}]*})?.*\]\((.*img\/)(.*)\.(.*)\)/, matches)
         #match(trigger[1], /!\[(.*\\[^}]*})?.*\]\([^\/]*\/?img\/(.*)\.(.*)\)/, matches)
 
@@ -40,6 +40,7 @@ insideCodeBlock { print }
         #print "testing for path match: " (2 in matches)
         #print "testing for basename match: " (3 in matches)
         #print "testing for extension match: " (4 in matches)
+        #print "testing for sizing match: " (5 in matches)
 
         label = ""
         if (1 in matches) {
@@ -53,6 +54,8 @@ insideCodeBlock { print }
         #print "basename: " basename
         extension = matches[4]
         #print "extension: " extension
+        sizing = matches[5]
+        #print "sizing: " sizing
 
         # change hyphens to spaces
         altText = matches[3]
@@ -60,7 +63,8 @@ insideCodeBlock { print }
         #print "altText: " altText
         
         # print everything on its own line
-        print "\n" "![" altText label "](" path basename "." extension ")" "\n"
+        #print "\n" "![" altText label "](" path basename "." extension ")" sizing "\n"
+        print "\n" "![" altText label "](" path basename "." extension "){ height=50% width=70% }" "\n"
     } else if (substr(trigger[1], 1, 1) == "#") { # else, if starts with #
         print "\n" $0 "\n"
     } else { # otherwise
