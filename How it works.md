@@ -1,3 +1,7 @@
+>[!Important]
+>This page is still in development - not all links may work.
+
+
 # Preparing your documents
 In `generate.sh`, the command immediately before the call to Pandoc is `awk -f prepare.awk`.  The output of this script which rendered intothe final report, and this script is responsible for ensuring that a single strict requirement is met: image links and lines containing headers should not be preceded or followed immediately by text. For example,
 
