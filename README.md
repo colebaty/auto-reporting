@@ -18,6 +18,10 @@ The intent for this repo is for it to be used as a "starter" for reporting on te
 
 The `.obsidian` folder is included in this repo, so you should have all the plugins and settings enabled from the get-go.  Please make whatever adjustments you need to work comfortably.
 
+## Try it out!
+
+This repo includes a [sample document](Try%20it%20out.md) to help you get familiar with usage.  Give it a try!
+
 # Requirements
 ## Important Note
 
