@@ -58,10 +58,10 @@ Figure \\\\ref{paste-image-rename}, above, shows an example of a screenshot take
 In order for images to populate properly, the links must be in CommonMark spec:
 
 ```markdown
-# commonmark spec with absolute path - correct
+# commonmark spec with absolute path - compatible
 ![alt text](/path/to/img.png)
 
-# wiki spec with relative path - incorrect
+# wiki spec with relative path - incompatible
 ![[../to/img.png | alt text]]
 ```
 
