@@ -30,7 +30,7 @@ At the beginning of the source of this document there is some "frontmatter".  Th
 
 # Linking/referencing images, tables, etc.
 
-Use `\\label{some-label]` and `\\\\ref{some-label}` pairs to "link" items together so that Pandoc can track them and generate labels automatically when the report is rendered.  This will also ensure they populate in the "List of Tables" or "List of Figures" page, if these will be included in the report.
+Use `\label{some-label]` and `\\ref{some-label}` pairs to "link" items together so that Pandoc can track them and generate labels automatically when the report is rendered.  This will also ensure they populate in the "List of Tables" or "List of Figures" page, if these will be included in the report.
 
 ## Paste Image Rename Obsidian plugin
 
