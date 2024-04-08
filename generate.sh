@@ -46,7 +46,7 @@ function log() {
 }
 
 # if no files listd and no pipe detected, print usage and exit
-([[ $# -lt 2 ]] && [[ ! -p /dev/stdin ]]) \
+([[ $# -lt 1 ]] && [[ ! -p /dev/stdin ]]) \
     && usage \
     && exit 1
 
