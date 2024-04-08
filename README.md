@@ -167,6 +167,7 @@ I've included the [FAQ](FAQ.md) from the original project.  If something you wan
 
 Future releases will include a tutorial for orientation and practice.  Topics to be covered will include
 
+- automatic citation/bibliography generation
 - extracting note contents into new notes
 - organizing the "flow" of the report
 - converting from CherryTree format to Markdown 

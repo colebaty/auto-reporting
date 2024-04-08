@@ -10,7 +10,8 @@ lang: "en"
 papersize: "letter"
 fontsize: "10pt"
 titlepage: true
-titlepage-color: "1E90FF"
+titlepage-logo: "img/odu-sig-noidea-reversed.png"
+titlepage-color: "00305C"
 titlepage-text-color: "FFFAFA"
 titlepage-rule-color: "FFFAFA"
 titlepage-rule-height: 2
