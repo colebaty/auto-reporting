@@ -35,11 +35,12 @@ This is intended for use only on Linux.  I have not tested this on Windows, and 
 
 ### Obsidian plugin breakdown
 
-| plugin name | what it does | why it's needed | 
-| --- | --- | --- |
-| Paste Image Rename | Renames images as they're pasted into the project. | better attachment organization; image filenames become captions in report |
-| Obsidian Link Converter | ensures links are CommonMark markdown spec with relative paths | Pandoc only recognizes CommonMark link formats. Also makes it trivially easy to convert older notes you may have with Wiki style links (`![[some link]]`) |
-| Obsidian Heading Shifter | quickly promotes/demotes Markdown headers | Allows you to quickly promote and demote headings in an extracted section to match what they need to be in the final report |
+| plugin name                   | what it does                                                   | why it's needed                                                                                                                                           |
+| ----------------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Paste Image Rename            | Renames images as they're pasted into the project.             | better attachment organization; image filenames become captions in report                                                                                 |
+| Obsidian Link Converter       | ensures links are CommonMark markdown spec with relative paths | Pandoc only recognizes CommonMark link formats. Also makes it trivially easy to convert older notes you may have with Wiki style links (`![[some link]]`) |
+| Obsidian Heading Shifter      | quickly promotes/demotes Markdown headers                      | Allows you to quickly promote and demote headings in an extracted section to match what they need to be in the final report<br>                           |
+| Obsidian Text Snippets Plugin | quickly generate frequently used LaTeX commands                | Quickly generate link-ref pairs, and any other text you find yourself typing over and over                                                                |
 
 
 ### Minimum LaTeX installation
