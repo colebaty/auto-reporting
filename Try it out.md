@@ -231,7 +231,7 @@ function log() {
 
 
 [^prism]: Obsidian natively supports Prism.js syntax highlighting: https://prismjs.com/#supported-languages
-
+bash
 
 
 # Changing header levels
@@ -247,9 +247,11 @@ To use, simply select the text containing the header you wish to promote/demote,
 
 ## Try it out
 
-The heading below should be on the same level as this one.  Use the Heading Shifter plugin to promote it so that it looks like what's shown below in the screenshot of the table of contents (Fig. \\\\ref{toc}).
+The heading below should be on the same level as this one.  Use the Heading Shifter plugin to promote it so that it looks like what's shown below in the screenshot of the table of contents (Fig. \\\\ref{toc}). (Ignore the chapter numbers, just work on the indenting.)
 
 ![ \label{toc} ](img/Headers-on-same-heading-level.png)
+
+Select any lines of text which include the target heading.  Use `Ctrl+Left` and `Ctrl+Right` to promote and demote the selected headings, respectively.
 
 ##### Dummy header for heading shifter
 
