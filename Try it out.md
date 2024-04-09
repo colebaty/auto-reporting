@@ -22,15 +22,113 @@ cd auto-reporting
 
 # Frontmatter
 
-At the beginning of the source of this document there is some "frontmatter".  This is a YAML block with information that will be rendered in the document:
+The utility used to convert from Markdown to PDF is called Pandoc[^pandoc].  Using Pandoc, we can specify configuration information for a given document by using YAML metadata sections, which are referred to as "frontmatter" in Pandoc documentation.
+
+[^pandoc]: https://pandoc.org/
+
+The way I've typically been conceptualizing frontmatter is "static" vs. "dynamic" information. I've been keeping static information in a separate frontmatter file, stored in `/templates`.  Dynamic information typically goes at the top of the document in a YAML block, as in the source for this document.
+
+For example, suppose you're taking CYSE 301 with Professor Peng Jiang, and you know there will be several lab reports you'll need to turn in.  Here's how I might break down the static vs. dynamic information for a course like this.
+
+- static information:
+    - Course name - CYSE 301
+    - Course instructor - Professor Peng Jiang
+    - My information - Name, email address, UIN, etc.
+- dynamic information:
+    - Lab report title
+    - Date of assignment
+
+This is a YAML block with information that will be rendered in the document:
 
 - Title: self explanatory
 - lof: "list of figures".  when set to "true", a page appears after the table of contents with a list of the figures included in the document
 - lot: "list of tables", like the list of figures, but for tables instead.
 
+## Try it out - Adjusting frontmatter
+
+The default frontmatter is located at `templates/frontmatter.yml`. Using the `-y` flag, you can specify a custom frontmatter file with additional information.  There is another frontmatter file provided in the `/templates` directory - 
+
+### Dynamic information
+
+Adjust some of the frontmatter at the beginning of this document and observe the changes in the rendered document.  Here's an explanation for what's included in this document
+
+- Title: self-explanatory
+- lof: "list of figures". produces an additional page like the table of contents but just for images/figures in the document
+- lot: "list of tables".  produces an additional page like the table of contents, but just for the tables in the document
+
+To remove the list of tables or list of figures, you must delete the corresponding row from the frontmatter - setting them to "false" has no effect.
+
+### Static information
+
+Add a logo to the title page, and change its background color by running the following command to generate the report:
+
+```bash
+./generate.sh -y templates/frontmatter-with-custom-logo.yml 'Try it out.md'
+```
+
+This will add the ODU logo to the title page of the document, as well as change the page background to "ODU blue".  
+
+### Create new frontmatter
+
+Try creating your own static frontmatter file.
+
 # Linking/referencing images, tables, etc.
 
 Use `\label{some-label]` and `\\ref{some-label}` pairs to "link" items together so that Pandoc can track them and generate labels automatically when the report is rendered.  This will also ensure they populate in the "List of Tables" or "List of Figures" page, if these will be included in the report.
+
+## Sample image and table links
+
+```markdown
+# applying the label to an image
+
+![ \label{some-label} ](/absolute/path/to/screenshot.png)
+
+# referencing the label
+
+Blah blah blah Figure \\\\ref{some-label}
+
+
+# applying the label to a table
+
+Table:  Some table title   \label{some-table-label} 
+
+| col1 | col2 |
+| ---  | ---  |
+| x    | y    |
+
+
+Blah blah blah in Table \\\\ref{some-table-label}
+
+```
+
+
+As long as the text between curly braces matches, Pandoc knows what you're referring to, and everything else will just happen automatically.
+
+## Labels and refs - Obsidian Text Snippet plugin
+
+You may have noticed that it's `\label{}` but `\\\\ref{}`, with the four backslashes.  This is just to account for the backslash-r escape character for a newline.  To observe what I mean, you can generate the document with the `-p` flag and observe how the Markdown is interpreted before being passed to Pandoc:
+
+Here is a line with just \ref{} in it.
+Here is another line with the proper \\\\ref{} escape.
+
+```bash
+./generate.sh -p Try\ it\ out\.md | less
+```
+
+You'll see that the backslash-r didn't render properly, but the one with four backslashes did.  
+
+## Text snippets
+
+Typing out the `\label{}` and `\\\\ref{}` tags can be tedious, so I've added two "shortcuts" to the vault using the Obsidian Text Snippets plugin[^text-snippets].  
+
+[^text-snippets]: https://github.com/ArianaKhit/text-snippets-obsidian
+
+To generate the `ref` tag:
+
+- type the word `ref`
+- with the cursor still somewhere in the word `ref`, type `Ctrl+Space`.
+
+### Try it out here
 
 ## Paste Image Rename Obsidian plugin
 
@@ -53,28 +151,6 @@ Figure \\\\ref{paste-image-rename}, above, shows an example of a screenshot take
 
 \[REPLACE THIS WITH A PASTED IMAGE\]
 
-## Link formatting
-
-In order for images to populate properly, the links must be in CommonMark spec:
-
-```markdown
-# commonmark spec with absolute path - compatible
-![alt text](/path/to/img.png)
-
-# wiki spec with relative path - incompatible
-![[../to/img.png | alt text]]
-```
-
-Additionally, the path to the images must be absolute with respect to the root of the vault.
-
-The Obsidian Link Converter plugin[^link-converter] takes care of this.  This vault is set up so that all links should automatically be the correct format, but in case something gets messed up, all you need to do is select the three dots in the upper right of the editor, and choose:
-
-- WikiLinks to Markdown
-- All Links to Absolute Path
-
-[^link-converter]:https://github.com/ozntel/obsidian-link-converter
-
-
 ## Tables
 
 Tables in Markdown can be...well, cumbersome.  Luckily, recent Obsidian releases have incorporated more and more table functionality.  Creating and editing tables in Obsidian is now very similar to inserting a table into something like a Word or Google Sheets document.
@@ -96,6 +172,31 @@ Try it out below!
 ### Try it out!
 
 \[CREATE A NEW TABLE HERE. TRY ADDING A LABEL-REFERENCE PAIR\]
+
+## Link formatting
+
+The information in this section is included to help with projects where the source documents may have been generated outside of the this vault.  
+
+Pandoc is particular about the Markdown it uses, so this vault has been pre-configured to automatically put things like links and paths to resources in the format Pandoc requires.
+
+In order for images to populate properly, the links must be in CommonMark spec:
+
+```markdown
+# commonmark spec with absolute path - compatible
+![alt text](/path/to/img.png)
+
+# wiki spec with relative path - incompatible
+![[../to/img.png | alt text]]
+```
+
+Additionally, the path to the images must be absolute with respect to the root of the vault.
+
+The Obsidian Link Converter plugin[^link-converter] takes care of this.  This vault is set up so that all links should automatically be the correct format, but in case something gets messed up, all you need to do is select the three dots in the upper right of the editor, and choose:
+
+- WikiLinks to Markdown
+- All Links to Absolute Path
+
+[^link-converter]:https://github.com/ozntel/obsidian-link-converter
 
 # Common Markdown techniques
 
@@ -132,20 +233,6 @@ function log() {
 [^prism]: Obsidian natively supports Prism.js syntax highlighting: https://prismjs.com/#supported-languages
 
 
-# Changing title pages
-
-The default frontmatter is located at `templates/frontmatter.yml`. Using the `-y` flag, you can specify a custom frontmatter file with additional information.
-
-## Try it out
-
-Add a logo to the title page, and change its background color by running the following command to generate the report:
-
-```bash
-./generate.sh -y templates/frontmatter-with-custom-logo.yml 'Try it out.md'
-```
-
-This will add the ODU logo to the title page of the document, as well as change the page background to "ODU blue".  
-
 
 # Changing header levels
 
@@ -171,7 +258,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # Appendix A: Appendices {-}
 
-Sometimes, you'll want to include one or more appendices.  By including the `{-}` at the end of the heading, you'll ensure these don't get numbered chapters.  Images and tables referenced in these sections will still have "chapter" numbers, but they will be internally consistent.
+Sometimes, you'll want to include one or more appendices.  By including the `{-}` at the end of the heading, you'll ensure these don't get numbered like chapters.  Images and tables referenced in these sections will still have "chapter" numbers, but they will be internally consistent.
 
 # Appendix B: Try it out
 
